@@ -1,0 +1,265 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #330033; /*color of text*/
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    position: relative;
+
+    background-color: #9900FF;
+
+    margin: 10px;
+    padding: 50px 50px 20px;
+    min-height: 865px;
+
+    border-radius: 25px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.title span {
+    color: #FFCCFF;
+}
+
+.language {
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+.eng,
+.rus
+{
+    background-color: #fff;
+    border-radius: 10px 0 0 10px;
+    font-weight: bold;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.marked {
+    background-color: #9900FF;
+}
+
+.selection {
+    display: flex;
+    position: absolute;
+    background-color: #9900FF;
+
+    width: 630px;
+    height: 710px;
+    padding: 1.5rem;
+
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.figures {
+    display: inherit;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.figure {
+    display: inherit;
+    width: 210px;
+    height: 210px;
+
+    border-radius: 40px 10px;
+    border: 8px double #330033;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.figure:hover {
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.handler {
+    display: flex;
+    font-size: 25px;
+
+    justify-content: space-around;
+    height: 30px;
+}
+
+.handler__status {
+    width: 200px;
+}
+
+.handler__status span {
+    color: #330033;
+    font-weight: bold;
+}
+
+.handler__reset {
+    cursor: pointer;
+}
+
+.handler__reset:hover {
+    color: #F2EBD3;
+}
+
+.gameGrid {
+    display: grid;
+    background-color: #663399;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-gap: 15px;
+    margin-top: 50px;
+}
+
+.gameGrid__cell {
+    background-color: #9900FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 200px;
+    width: 200px;
+
+    cursor: pointer;
+}
+
+.flagX,
+.flagO {
+    cursor: default;
+}
+
+.flagX::before {
+    content: 'X';
+    font-size: 200px;
+}
+.flagO::before {
+    content: 'O';
+    color: #F2EBD3;
+    font-size: 200px;
+}
+
+.won::before {
+    color: #BD022F;
+}
+
+.analytics {
+    display: none;
+    text-align: right;
+    color: #663399;
+    margin-top: 20px;
+}
+
+table {
+    width: 300px;
+    border-spacing: 5px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 20px;
+    color: #777;
+}
+
+td {
+    vertical-align: middle;
+    padding: 8px;
+    text-align: center;
+    border: 2px solid #777;
+    border-radius: 10px 5px;
+    min-width: 30px;
+}
+
+.statistic__first {
+    cursor: pointer;
+}
+.statistic__second {
+    transform: translateY(-43px);
+    display: none;
+}
+.statistic__third {
+    transform: translateY(-86px);
+    display: none;
+}
+
+
+.download a {
+    color: #777;
+    text-decoration: none;
+}
+
+.download a:hover {
+    color: #330033;
+    text-decoration: underline;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: .5rem;
+    color: #777;
+    font-style: italic;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        min-height: 680px;
+    }
+    .selection {
+        width: 470px;
+        height: 550px;
+    }
+    .figure {
+        width: 170px;
+        height: 170px;
+    }
+    .gameGrid {
+        margin-top: 25px;
+        grid-gap: 10px;
+    }
+    .gameGrid__cell {
+        height: 150px;
+        width: 150px;
+    }
+    .flagX::before {
+        font-size: 150px;
+    }
+    .flagO::before {
+        font-size: 150px;
+    }
+}
+
+@media (max-width: 540px) {
+    .container {
+        padding: 25px 25px 10px;
+        min-height: 495px;
+    }
+    .selection {
+        width: 320px;
+        height: 400px;
+    }
+    .figure {
+        width: 120px;
+        height: 120px;
+    }
+    .gameGrid__cell {
+        height: 100px;
+        width: 100px;
+    }
+    .flagX::before {
+        font-size: 100px;
+    }
+    .flagO::before {
+        font-size: 100px;
+    }
+}

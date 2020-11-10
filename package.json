@@ -1,0 +1,16 @@
+{
+  "name": "tictac",
+  "version": "1.0.0",
+  "description": "tictac with minimax algoritm",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tictac",
+    "JS",
+    "minimax"
+  ],
+  "author": "",
+  "license": "MIT"
+}

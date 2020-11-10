@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" type="ico" href="./img/favicon.ico"/>
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="title">Tic <span>Tac</span> Toe</h1>
+    <div class="language">
+        <div class="eng marked">eng</div>
+        <div class="rus">rus</div>
+    </div>
+    <div class="selection">
+        <h1 class="title">Chose your fighter!</h1>
+        <div class="figures">
+            <div class="figure flagO" id="zero"></div>
+            <div class="figure flagX" id="cross"></div>
+        </div>
+    </div>
+    <div class="handler">
+        <div class="handler__status"></div>
+        <div class="handler__reset">Reset</div>
+    </div> <!-- /handler-->
+
+    <div class="gameGrid">
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+        <div class="gameGrid__cell"></div>
+    </div> <!-- /gameGrid-->
+
+    <div class="analytics"></div>
+</div> <!-- /container-->
+
+<table class="statistic">
+    <tr class="statistic__first">
+        <td>Total played</td>
+        <td id="statistic__total"></td>
+    </tr>
+    <tr class="statistic__second">
+        <td>Computer wins</td>
+        <td id="statistic__wins"></td>
+    </tr>
+    <tr class="statistic__third">
+        <td>Ties</td>
+        <td id="statistic__ties"></td>
+    </tr>
+</table>
+
+<div class="download"><a href="./source.zip" download>Download source files</a></div>
+<div class="copyright">
+    © made by Артём Марков <<a href="mailto:markovartyom795@gmail.com">markovartyom795@gmail.com</a>>
+</div>
+
+<!-- /end-->
+<script src="app.js"></script>
+</body>
+</html>
