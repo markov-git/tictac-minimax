@@ -6,19 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="shortcut icon" type="ico" href="./img/favicon.ico"/>
-    <title>Tic Tac Toe</title>
+    <link rel="shortcut icon" type="ico" href="img/favicon.ico"/>
+    <title data-language="htmlTitle">Tic Tac Toe</title>
 </head>
 <body>
 
 <div class="container">
-    <h1 class="title">Tic <span>Tac</span> Toe</h1>
+    <h1 class="title" data-language="title">Tic <span>Tac</span> Toe</h1>
     <div class="language">
-        <div class="eng marked">eng</div>
+        <div class="eng">eng</div>
         <div class="rus">rus</div>
     </div>
     <div class="selection">
-        <h1 class="title">Chose your fighter!</h1>
+        <h1 class="title" data-language="chose">Chose your player!</h1>
         <div class="figures">
             <div class="figure flagO" id="zero"></div>
             <div class="figure flagX" id="cross"></div>
@@ -26,7 +26,7 @@
     </div>
     <div class="handler">
         <div class="handler__status"></div>
-        <div class="handler__reset">Reset</div>
+        <div class="handler__reset" data-language="reset">Reset</div>
     </div> <!-- /handler-->
 
     <div class="gameGrid">
@@ -46,22 +46,23 @@
 
 <table class="statistic">
     <tr class="statistic__first">
-        <td>Total played</td>
+        <td data-language="totalStatistic">Total played</td>
         <td id="statistic__total"></td>
     </tr>
     <tr class="statistic__second">
-        <td>Computer wins</td>
+        <td data-language="winsStatistic">Computer wins</td>
         <td id="statistic__wins"></td>
     </tr>
     <tr class="statistic__third">
-        <td>Ties</td>
+        <td data-language="tiesStatistic">Ties</td>
         <td id="statistic__ties"></td>
     </tr>
 </table>
 
-<div class="download"><a href="./source.zip" download>Download source files</a></div>
+<div class="download"><a href="https://github.com/markov-git/tictac-minimax" target="_blank">GitHub repository</a></div>
+
 <div class="copyright">
-    © made by Артём Марков <<a href="mailto:markovartyom795@gmail.com">markovartyom795@gmail.com</a>>
+    made by Артём Марков <<a href="mailto:markovartyom795@gmail.com">markovartyom795@gmail.com</a>>
 </div>
 
 <!-- /end-->

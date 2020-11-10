@@ -1,6 +1,8 @@
 // HTML
 const $zero = document.querySelector('#zero')
 const $cross = document.querySelector('#cross')
+const $eng = document.querySelector('.eng')
+const $rus = document.querySelector('.rus')
 const selection = document.querySelector('.selection')
 const status = document.querySelector('.handler__status')
 const reset = document.querySelector('.handler__reset')
@@ -9,6 +11,7 @@ const analytics = document.querySelector('.analytics')
 const firstLineStatistic = document.querySelector('.statistic__first')
 const secondLineStatistic = document.querySelector('.statistic__second')
 const thirdLineStatistic = document.querySelector('.statistic__third')
+const toTranslate = document.querySelectorAll('[data-language]')
 // game
 let isGame = true
 let isNextX = false //cross always second
@@ -17,15 +20,58 @@ let recursCounter = 0
 //constants
 const X = 'flagX'
 const O = 'flagO'
+const language = {
+    status: 'eng',
+    marked: 'width: 110%; background-color: #FFCCFF;',
+    default: 'width: 100%; background-color: #9900ff;'
+}
+const initState = {
+    rus: {
+        htmlTitle: 'Крестики-нолики',
+        title: 'Крестики <span>Нолики</span>',
+        chose: 'Выберите игрока!',
+        reset: 'Перезапустить',
+        next: `ходят `,
+        win: 'победили!',
+        totalStatistic: 'Всего сыграно игр',
+        winsStatistic: 'Побед компьютера',
+        tiesStatistic: 'Ничьи'
+    },
+    eng: {
+        htmlTitle: 'Tic Tac Toe',
+        title: 'Tic <span>Tac</span> Toe',
+        chose: 'Chose your player!',
+        reset: 'Reset',
+        next: `is next`,
+        win: 'has won!',
+        totalStatistic: 'Total played',
+        winsStatistic: 'Computer wins',
+        tiesStatistic: 'Ties'
+    }
+}
 //checkers
-const endGame = tic => {
+try {
+    getData();
+} catch (e) {
+    console.log(e)
+}
+
+language.status === 'eng'
+    ? $eng.style = language.marked
+    : $rus.style = language.marked
+
+const endGame = () => {
     isGame = false
     recursCounter = 0
-    let text = tic === X ? 'X' : 'O'
-    status.innerHTML = `<span>${text} has won!</span>`
-    upStatistic().then(()=>{
-        getData()
-    })
+    setWinner()
+    try {
+        upStatistic().then(() => {
+            getData()
+        })
+    } catch (e) {
+        console.log(e)
+    }
+
 }
 
 function isWin(cBoard) {
@@ -85,9 +131,13 @@ function isWin(cBoard) {
         recursCounter = 0
         analytics.innerHTML = 'Count of recurs function: ' + recursCounter
         status.innerHTML = `Game is tied!`
-        upStatistic('tie').then(()=>{
-            getData()
-        })
+        try {
+            upStatistic('tie').then(() => {
+                getData()
+            })
+        } catch (e) {
+            console.log(e)
+        }
         return true
     } else
         return false
@@ -97,14 +147,14 @@ const checkStatus = () => {
     if (!isWin(getCurrentBoard())) {
         isNextX = !isNextX
         if (isNextX) {
-            status.innerHTML = `X is next`
+            status.innerHTML = nextStepToString('X')
 
             // AI step
             if (playerFigureZero)
                 makeAsyncAIMove()
 
         } else {
-            status.innerHTML = `O is next`
+            status.innerHTML = nextStepToString('O')
 
             // AI step
             if (!playerFigureZero)
@@ -237,42 +287,101 @@ function makeAsyncAIMove(timeout = 300) {
     for (let i = 0; i < 4; i++) {
         setTimeout(() => {
             if (isNextX)
-                status.innerHTML = 'X is next' +  '.'.repeat(i)
+                status.innerHTML = nextStepToString('X') + '.'.repeat(i)
             else
-                status.innerHTML = 'O is next' +  '.'.repeat(i)
+                status.innerHTML = nextStepToString('O') + '.'.repeat(i)
         }, timeout * i / 4)
     }
 }
 
-//listeners
-getData();
+function nextStepToString(str) {
+    if (language.status === 'eng') {
+        return `'${str}' ${initState.eng.next}`
+    } else {
+        return `${initState.rus.next} '${str}'`
+    }
+}
 
-$cross.addEventListener('click', e => {
+function setWinner() {
+    if (!isGame) {
+        const part1 = isNextX ? 'X' : 'O'
+        const part2 = language.status === 'eng' ? initState.eng.win : initState.rus.win
+        status.innerHTML = `<span>'${part1}' ${part2}</span>`
+    }
+}
+
+function changeLanguage(lang) {
+    language.status = lang
+    if (lang === 'eng') {
+        $eng.style = language.marked
+        $rus.style = language.default
+        isNextX === true
+            ? status.innerHTML = nextStepToString('X')
+            : status.innerHTML = nextStepToString('O')
+        setWinner()
+    } else {
+        $eng.style = language.default
+        $rus.style = language.marked
+        isNextX === true
+            ? status.innerHTML = nextStepToString('X')
+            : status.innerHTML = nextStepToString('O')
+        setWinner()
+    }
+}
+
+//listeners
+
+$cross.addEventListener('click', () => {
     playerFigureZero = false
-    status.innerHTML = `O is next`
+    status.innerHTML = nextStepToString('O')
     hideSelector()
 
     makeAsyncAIMove(500)    //or will be lagging
 })
-$zero.addEventListener('click', e => {
+$zero.addEventListener('click', () => {
     playerFigureZero = true
-    status.innerHTML = `O is next`
+    status.innerHTML = nextStepToString('O')
 
     hideSelector()
 })
 
-reset.addEventListener('click', e => {
+$eng.addEventListener('click', () => {
+    if (language.status !== 'eng') {
+        changeLanguage('eng')
+
+        for (let node of toTranslate) {
+            node.innerHTML = initState.eng[node.dataset.language]
+        }
+    }
+})
+
+$rus.addEventListener('click', () => {
+    if (language.status !== 'rus') {
+        changeLanguage('rus')
+
+        for (let node of toTranslate) {
+            node.innerHTML = initState.rus[node.dataset.language]
+        }
+    }
+})
+
+reset.addEventListener('click', () => {
     showSelector()
     isNextX = false
     isGame = true
     analytics.innerHTML = ''
+    status.innerHTML = ''
     recursCounter = 0
     for (const tic of cell) {
         tic.classList.remove(X)
         tic.classList.remove(O)
         tic.classList.remove('won')
     }
-    getData();
+    try {
+        getData();
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 for (const tic of cell) {
@@ -293,7 +402,7 @@ for (const tic of cell) {
 }
 
 let tableShown = false
-firstLineStatistic.addEventListener('click',evt => {
+firstLineStatistic.addEventListener('click', () => {
     if (!tableShown) {
         tableShown = !tableShown
         secondLineStatistic.style.display = 'table-row'
@@ -322,11 +431,9 @@ async function getData() {
     total.innerHTML = data[0].total.toString()
     wins.innerHTML = data[0].wins.toString()
     ties.innerHTML = data[0].ties.toString()
-
-    // console.log(data[0])
 }
 
-async function upStatistic(str='win') {
+async function upStatistic(str = 'win') {
 
     const data = {type: str}
 
@@ -337,7 +444,8 @@ async function upStatistic(str='win') {
         },
         body: JSON.stringify(data)
     }
-    const response = await fetch('/tic', options)
-    const json = await response.json();
+    await fetch('/tic', options)
+    // const response = await fetch('/tic', options)
+    // const json = await response.json();
     // console.log(json)
 }

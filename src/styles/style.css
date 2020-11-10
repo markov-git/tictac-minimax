@@ -38,22 +38,23 @@ body {
     position: absolute;
     top: 30px;
     right: 0;
+    z-index: 1;
 }
 
 .eng,
 .rus
 {
-    background-color: #fff;
+    background-color: #9900ff;
     border-radius: 10px 0 0 10px;
     font-weight: bold;
+
     padding-right: 10px;
     padding-left: 10px;
     margin-bottom: 5px;
     cursor: pointer;
-}
+    box-shadow: 0 0 3px rgba(0,0,0,0.6);
 
-.marked {
-    background-color: #9900FF;
+    transition: width .6s, background-color .5s;
 }
 
 .selection {
@@ -183,6 +184,11 @@ td {
 
 .statistic__first {
     cursor: pointer;
+    transition: background-color .5s, color .5s;
+}
+.statistic__first:hover {
+    background-color: #ab37f8;
+    color: #fff;
 }
 .statistic__second {
     transform: translateY(-43px);
@@ -244,6 +250,9 @@ td {
         padding: 25px 25px 10px;
         min-height: 495px;
     }
+    .title {
+        font-size: 28px;
+    }
     .selection {
         width: 320px;
         height: 400px;
@@ -261,5 +270,15 @@ td {
     }
     .flagO::before {
         font-size: 100px;
+    }
+    .handler {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        font-size: 20px;
+    }
+    .handler__status {
+        width: 120px;
     }
 }

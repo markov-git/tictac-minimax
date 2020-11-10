@@ -2,15 +2,23 @@
   "name": "tictac",
   "version": "1.0.0",
   "description": "tictac with minimax algoritm",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel ./src/index.html -p 3000 --open",
+    "build": "parcel build ./src/index.html --no-source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markov-git/tictac-minimax.git"
   },
   "keywords": [
     "tictac",
     "JS",
     "minimax"
   ],
-  "author": "",
-  "license": "MIT"
+  "author": "Артём Марков <markovartyom795@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
 }
