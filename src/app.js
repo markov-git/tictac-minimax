@@ -102,6 +102,7 @@ $rus.addEventListener('click', () => {
 
 $reset.addEventListener('click', () => {
     showSelector()
+    $reset.classList.remove('blink')
     isNextX = false
     isGame = true
     isTie = false
@@ -166,6 +167,7 @@ function isWin(cBoard) {
 
 function endGame(strPost) {
     isGame = false
+    $reset.classList.add('blink')
     recursCounter = 0
     setWinner()
     postDataToServer(strPost)

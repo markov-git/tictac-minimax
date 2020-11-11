@@ -94,6 +94,14 @@ body {
 .handler__reset:hover {
     color: #F2EBD3;
 }
+.blink {
+    animation: blink 2s linear infinite;
+}
+@keyframes blink {
+    0% { color: #F2EBD3; }
+    50% { color: #81639f; }
+    100% { color: #F2EBD3; }
+}
 .gameGrid {
     display: grid;
     background-color: #663399;
