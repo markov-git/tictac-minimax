@@ -3,122 +3,97 @@
     margin: 0;
     padding: 0;
 }
-
 body {
-    color: #330033; /*color of text*/
+    color: #330033;
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-
 .container {
     position: relative;
-
     background-color: #9900FF;
-
     margin: 10px;
     padding: 50px 50px 20px;
     min-height: 865px;
-
     border-radius: 25px;
 }
-
 .title {
     text-align: center;
     margin-bottom: 10px;
 }
-
 .title span {
     color: #FFCCFF;
 }
-
 .language {
     position: absolute;
     top: 30px;
     right: 0;
     z-index: 1;
 }
-
 .eng,
 .rus
 {
     background-color: #9900ff;
     border-radius: 10px 0 0 10px;
     font-weight: bold;
-
     padding-right: 10px;
     padding-left: 10px;
     margin-bottom: 5px;
     cursor: pointer;
     box-shadow: 0 0 3px rgba(0,0,0,0.6);
-
     transition: width .6s, background-color .5s;
 }
-
 .selection {
     display: flex;
     position: absolute;
     background-color: #9900FF;
-
     width: 630px;
     height: 710px;
     padding: 1.5rem;
-
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
+    transition: opacity .5s;
 }
-
 .figures {
     display: inherit;
     width: 100%;
     justify-content: space-around;
 }
-
 .figure {
     display: inherit;
     width: 210px;
     height: 210px;
-
     border-radius: 40px 10px;
     border: 8px double #330033;
-
     justify-content: center;
     align-items: center;
 }
-
 .figure:hover {
     cursor: pointer;
     box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
-
 .handler {
     display: flex;
     font-size: 25px;
-
     justify-content: space-around;
     height: 30px;
 }
-
 .handler__status {
     width: 200px;
 }
-
 .handler__status span {
     color: #330033;
     font-weight: bold;
 }
-
 .handler__reset {
     cursor: pointer;
 }
-
 .handler__reset:hover {
     color: #F2EBD3;
 }
-
 .gameGrid {
     display: grid;
     background-color: #663399;
@@ -126,24 +101,19 @@ body {
     grid-gap: 15px;
     margin-top: 50px;
 }
-
 .gameGrid__cell {
     background-color: #9900FF;
     display: flex;
     justify-content: center;
     align-items: center;
-
     height: 200px;
     width: 200px;
-
     cursor: pointer;
 }
-
 .flagX,
 .flagO {
     cursor: default;
 }
-
 .flagX::before {
     content: 'X';
     font-size: 200px;
@@ -153,18 +123,15 @@ body {
     color: #F2EBD3;
     font-size: 200px;
 }
-
 .won::before {
     color: #BD022F;
 }
-
 .analytics {
     display: none;
     text-align: right;
     color: #663399;
     margin-top: 20px;
 }
-
 table {
     width: 300px;
     border-spacing: 5px;
@@ -172,7 +139,6 @@ table {
     margin-bottom: 20px;
     color: #777;
 }
-
 td {
     vertical-align: middle;
     padding: 8px;
@@ -181,7 +147,6 @@ td {
     border-radius: 10px 5px;
     min-width: 30px;
 }
-
 .statistic__first {
     cursor: pointer;
     transition: background-color .5s, color .5s;
@@ -198,25 +163,20 @@ td {
     transform: translateY(-86px);
     display: none;
 }
-
-
 .download a {
     color: #777;
     text-decoration: none;
 }
-
 .download a:hover {
     color: #330033;
     text-decoration: underline;
 }
-
 .copyright {
     text-align: center;
     margin-top: .5rem;
     color: #777;
     font-style: italic;
 }
-
 @media (max-width: 1024px) {
     .container {
         min-height: 680px;
@@ -244,7 +204,6 @@ td {
         font-size: 150px;
     }
 }
-
 @media (max-width: 540px) {
     .container {
         padding: 25px 25px 10px;
