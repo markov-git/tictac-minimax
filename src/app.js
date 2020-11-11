@@ -22,7 +22,7 @@ let recursCounter = 0
 const X = 'flagX'
 const O = 'flagO'
 const language = {
-    status: 'eng',
+    status: window.navigator.languages.includes('ru') ? 'rus' : 'eng',
     marked: 'width: 110%; background-color: #FFCCFF;',
     default: 'width: 100%; background-color: #9900ff;'
 }
@@ -59,9 +59,13 @@ try {
     console.log(e)
 }
 
+//set init status
 language.status === 'eng'
     ? $eng.style = language.marked
     : $rus.style = language.marked
+for (let node of toTranslate) {
+    node.innerHTML = initState.rus[node.dataset.language]
+}
 
 const endGame = () => {
     isGame = false
