@@ -14,6 +14,7 @@ const thirdLineStatistic = document.querySelector('.statistic__third')
 const toTranslate = document.querySelectorAll('[data-language]')
 // game
 let isGame = true
+let isTie = false //for changing language after tie
 let isNextX = false //cross always second
 let playerFigureZero = false
 let recursCounter = 0
@@ -33,6 +34,7 @@ const initState = {
         reset: 'Перезапустить',
         next: `ходят `,
         win: 'победили!',
+        tie: 'Ничья!',
         totalStatistic: 'Всего сыграно игр',
         winsStatistic: 'Побед компьютера',
         tiesStatistic: 'Ничьи'
@@ -44,6 +46,7 @@ const initState = {
         reset: 'Reset',
         next: `is next`,
         win: 'has won!',
+        tie: 'Game is tied!',
         totalStatistic: 'Total played',
         winsStatistic: 'Computer wins',
         tiesStatistic: 'Ties'
@@ -128,9 +131,12 @@ function isWin(cBoard) {
         cBoard[3] && cBoard[4] && cBoard[5] &&
         cBoard[6] && cBoard[7] && cBoard[8]) {
         isGame = false
+        isTie = true
         recursCounter = 0
         analytics.innerHTML = 'Count of recurs function: ' + recursCounter
-        status.innerHTML = `Game is tied!`
+        status.innerHTML = language.status === 'eng'
+            ? initState.eng.tie
+            : initState.rus.tie
         try {
             upStatistic('tie').then(() => {
                 getData()
@@ -308,6 +314,11 @@ function setWinner() {
         const part2 = language.status === 'eng' ? initState.eng.win : initState.rus.win
         status.innerHTML = `<span>'${part1}' ${part2}</span>`
     }
+    if (isTie) {
+        status.innerHTML = language.status === 'eng'
+            ? initState.eng.tie
+            : initState.rus.tie
+    }
 }
 
 function changeLanguage(lang) {
@@ -369,6 +380,7 @@ reset.addEventListener('click', () => {
     showSelector()
     isNextX = false
     isGame = true
+    isTie = false
     analytics.innerHTML = ''
     status.innerHTML = ''
     recursCounter = 0
